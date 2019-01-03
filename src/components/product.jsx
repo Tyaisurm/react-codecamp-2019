@@ -2,7 +2,7 @@ import React, { Component } from "react";
 class Product extends Component {
   state = {};
   render() {
-    return <h1>Product</h1>;
+    return <h1>View a Product Page</h1>;
   }
 }
 
