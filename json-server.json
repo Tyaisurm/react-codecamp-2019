@@ -1,4 +1,6 @@
 {
     "port": 3001,
-    "read-only": true
+    "read-only": true,
+    "watch": "db.json",
+    "static": "./mockupstatic/"
   }
