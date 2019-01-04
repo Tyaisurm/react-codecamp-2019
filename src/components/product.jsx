@@ -18,13 +18,37 @@ class Product extends Component {
             {props.name}
           </p>
 
-          <span className="badge badge-warning m-2 float-sm-right">0</span>
-          <button className="btn btn-primary btn-sm float-sm-right">
+          <span
+            name="quantity"
+            className="badge badge-warning m-2 float-sm-right"
+          >
+            0
+          </span>
+          <button
+            name="addToCart"
+            className="btn btn-primary m-2 btn-sm float-sm-right"
+          >
             Add +
           </button>
-          <span className="badge badge-info m-2 float-sm-right">$ 4,50</span>
-          <span className="badge badge-success m-2 float-sm-right">$ 5,50</span>
-          <span className="badge badge-danger m-2 float-sm-right">$ 4,50</span>
+          <span
+            name="currentPrice"
+            className="badge badge-dark m-2 float-sm-right"
+            style={this.style}
+          >
+            $ 4,50
+          </span>
+          <span
+            name="intraDayHighestPrice"
+            className="badge badge-pill badge-success m-2 float-sm-right"
+          >
+            $ 5,50
+          </span>
+          <span
+            name="intraDayLowestPrice"
+            className="badge badge-pill badge-danger m-2 float-sm-right"
+          >
+            $ 4,50
+          </span>
 
           <footer className="blockquote-footer">
             <cite title="type">{props.description}</cite>
