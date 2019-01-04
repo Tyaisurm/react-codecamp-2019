@@ -6,7 +6,7 @@ function ProductsList(props) {
     <div>
       <ul className="list-group">
         {props.product.map(p => (
-          <Product key={p.id} name={p.name} />
+          <Product key={p.id} name={p.name} description={p.description} />
         ))}
       </ul>
     </div>
