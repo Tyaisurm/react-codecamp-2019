@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import "./App.css";
-import Products from "./containers/products";
+import Navigation from "./containers/navigation";
+import ProductList from "./components/productList";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h3>Include the components here in App.js</h3>
+      <div>
+        <Navigation />
+        <ProductList />
       </div>
     );
   }
