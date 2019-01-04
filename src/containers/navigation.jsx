@@ -5,7 +5,7 @@ class Navigation extends React.Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="/">
-          <img clasName="logo" src={require("../logo.png")} alt="Logo" />
+          <img className="logo" src={require("../logo.png")} alt="Logo" />
         </a>
         <button
           className="navbar-toggler"
