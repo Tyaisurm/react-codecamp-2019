@@ -27,10 +27,12 @@ class Product extends Component {
   }
 
   removeFromBasket() {
-    this.setState({
-      count: this.state.count - 1
-    });
-    this.props.raise(this.props.id);
+    if (this.state.count > 0) {
+      this.setState({
+        count: this.state.count - 1
+      });
+      this.props.raise(this.props.id);
+    }
   }
 
   setPrice(change) {
