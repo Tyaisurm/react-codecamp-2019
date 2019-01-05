@@ -6,7 +6,7 @@ THIS IS STILL NOT WORKIN! DO NOT USE!
 
 */
 
-
+//fetch("http://localhost:3001/api/drinks/1", {"headers":{"Content-Type":"application/json"},"body":'{"description":"IVE BEEN EDITED"}',"method":"PATCH"});
 function getPosts() {
   const getPosts = axios.get("https://jsonplaceholder.typicode.com/posts");
   const getUsers = axios.get("https://jsonplaceholder.typicode.com/users");
