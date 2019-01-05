@@ -7,19 +7,16 @@ class ProductsList extends Component {
     this.state = {
       numberofprods: this.props.product.length
     };
-    this.raisePrice = this.raisePrice.bind(this);
+    this.setPrice = this.setPrice.bind(this);
+    this.addBasket = this.addBasket.bind(this);
   }
 
-  raisePrice(id) {
-    // As it works: When you purchase something (or now just add it to the basket), its price rises by 5% and all the others drop by 2%.
-    let i;
-    for (i = 1; i < this.state.numberofprods + 1; i++) {
-      if (i === id) {
-        this.refs["product" + i].setPrice(1.05);
-      } else {
-        this.refs["product" + i].setPrice(0.98);
-      }
-    }
+  setPrice(id, pricechange) {
+    this.refs["product" + id].setPrice(pricechange);
+  }
+
+  addBasket (amount) {
+    this.props.addBasket(amount)
   }
 
   render() {
@@ -34,7 +31,7 @@ class ProductsList extends Component {
               name={p.name}
               description={p.description}
               startprice={p.startprice}
-              raise={this.raisePrice}
+              raise={this.addBasket}
             />
           ))}
         </ul>

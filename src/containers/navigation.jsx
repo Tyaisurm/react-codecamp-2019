@@ -35,7 +35,7 @@ class Navigation extends React.Component {
             <li className="nav-item" />
           </ul>
           <button type="button" className="btn btn-secondary float-sm-right">
-            Proceed to Order <span className="badge badge-light">0</span>
+            Proceed to Order <span className="badge badge-light">{this.props.total}</span>
             <span className="sr-only">unread messages</span>
           </button>
         </div>

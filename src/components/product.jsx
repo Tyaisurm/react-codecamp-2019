@@ -23,7 +23,7 @@ class Product extends Component {
     this.setState({
       count: this.state.count + 1
     });
-    this.props.raise(this.props.id);
+    this.props.raise(1);
   }
 
   removeFromBasket() {
@@ -31,7 +31,7 @@ class Product extends Component {
       this.setState({
         count: this.state.count - 1
       });
-      this.props.raise(this.props.id);
+      this.props.raise(-1);
     }
   }
 
