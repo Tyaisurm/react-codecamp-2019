@@ -9,8 +9,8 @@ class ProductsList extends Component {
     };
     this.setPrice = this.setPrice.bind(this);
     this.addBasket = this.addBasket.bind(this);
-    this.getTotalPrice = this.getTotalPrice.bind(this)
-    this.checkOut = this.checkOut.bind(this)
+    this.getTotalPrice = this.getTotalPrice.bind(this);
+    this.checkOut = this.checkOut.bind(this);
   }
 
   setPrice(id, pricechange) {
@@ -30,9 +30,16 @@ class ProductsList extends Component {
     return sum.toFixed(2)
   }
 
-  checkOut() {
+  checkOut(totaldrinks) {
     let i;
     for (i = 1; i < this.state.numberofprods + 1; i++) {
+      let count = this.refs["product" + i].state.count;
+
+      if (count !== 0) {
+        this.refs["product" + i].setPrice(1.005 ** count) // Increase price by 0.5% per sold drink
+      } else {
+        this.refs["product" + i].setPrice(0.98) // Drop price by 2% if nobody bought it this time
+      }
       this.refs["product" + i].resetCount();
     }
   }

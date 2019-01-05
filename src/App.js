@@ -23,12 +23,12 @@ class App extends Component {
   }
 
   checkOut () {
+    this.refs["plist"].checkOut(this.state.basketDrinks)
     this.setState({
+      bill: (parseFloat(this.state.bill) + parseFloat(this.state.basketSum)), // Otherwise it treats it as string for some reason
       basketDrinks: 0,
-      basketSum: 0,
-      bill: (parseFloat(this.state.bill) + parseFloat(this.state.basketSum)) // Otherwise it treats it as string for some reason
+      basketSum: 0
     })
-    this.refs["plist"].checkOut()
   }
 
   render() {
