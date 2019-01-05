@@ -1,0 +1,18 @@
+{
+  "name": "groupwork_mockupserver",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "fs-extra": "^7.0.1",
+    "json-server": "^0.14.2"
+  },
+  "scripts": {
+    "startnode": "node index.js",
+    "start": "json-server -c ./json-server.json mockupdb.json"
+  },
+  "devDependencies": {},
+  "description": "backend server",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
+}
