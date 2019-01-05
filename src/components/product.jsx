@@ -3,12 +3,47 @@ import beer from "../images/beer.png";
 require("../images/beer.png");
 console.log(beer);
 class Product extends Component {
-  state = {
-    count: 0
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      count: 0,
+      price: props.startprice,
+      pricemin: props.startprice,
+      pricemax: props.startprice
+    }
+    this.addToBasket = this.addToBasket.bind(this)
+    this.setPrice = this.setPrice.bind(this)
+  }
+  
   render() {
     return this.prod(this.props);
   }
+
+  addToBasket() {
+    this.setState({
+      count: this.state.count + 1
+    })
+    this.props.raise(this.props.id)
+  }
+
+  setPrice(change) { // change is the coefficient. change = 1.05 would mean rise of 5% in price
+    let nuprice = change * this.state.price;
+    
+    this.setState({
+      price: nuprice
+    })
+    if (this.state.pricemax < nuprice) {
+      this.setState({
+        pricemax: nuprice
+      })
+    }
+    if (this.state.pricemin > nuprice) {
+      this.setState({
+        pricemin: nuprice
+      })
+    }
+  }
+
   prod(props) {
     return (
       <li className="list-group-item">
@@ -22,11 +57,12 @@ class Product extends Component {
             name="quantity"
             className="badge badge-warning m-2 float-sm-right"
           >
-            0
+            {this.state.count}
           </span>
           <button
             name="addToCart"
             className="btn btn-primary m-2 btn-sm float-sm-right"
+            onClick={this.addToBasket}
           >
             Add +
           </button>
@@ -35,19 +71,19 @@ class Product extends Component {
             className="badge badge-dark m-2 float-sm-right"
             style={this.style}
           >
-            $ 4,50
+            $ {this.state.price.toFixed(2)}
           </span>
           <span
             name="intraDayHighestPrice"
             className="badge badge-pill badge-success m-2 float-sm-right"
           >
-            $ 5,50
+            $ {this.state.pricemax.toFixed(2)}
           </span>
           <span
             name="intraDayLowestPrice"
             className="badge badge-pill badge-danger m-2 float-sm-right"
           >
-            $ 4,50
+            $ {this.state.pricemin.toFixed(2)}
           </span>
 
           <footer className="blockquote-footer">
