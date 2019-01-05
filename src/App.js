@@ -8,9 +8,11 @@ class App extends Component {
     super(props);
     this.state = {
       basketDrinks: 0,
-      basketSum: 0
+      basketSum: 0,
+      bill: 0
     }
     this.addBasket = this.addBasket.bind(this);
+    this.checkOut = this.checkOut.bind(this);
   }
 
   addBasket(amount) {
@@ -20,10 +22,19 @@ class App extends Component {
     })
   }
 
+  checkOut () {
+    this.setState({
+      basketDrinks: 0,
+      basketSum: 0,
+      bill: (parseFloat(this.state.bill) + parseFloat(this.state.basketSum)) // Otherwise it treats it as string for some reason
+    })
+    this.refs["plist"].checkOut()
+  }
+
   render() {
     return (
       <div>
-        <Navigation totalDrinks={this.state.basketDrinks} totalSum = {this.state.basketSum}/>
+        <Navigation totalDrinks={this.state.basketDrinks} totalSum={this.state.basketSum} bill={this.state.bill} checkOut={this.checkOut} />
         <ProductsList product={product} addBasket={this.addBasket} ref="plist" />
       </div>
     );

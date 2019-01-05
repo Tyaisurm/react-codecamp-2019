@@ -10,6 +10,7 @@ class ProductsList extends Component {
     this.setPrice = this.setPrice.bind(this);
     this.addBasket = this.addBasket.bind(this);
     this.getTotalPrice = this.getTotalPrice.bind(this)
+    this.checkOut = this.checkOut.bind(this)
   }
 
   setPrice(id, pricechange) {
@@ -27,6 +28,13 @@ class ProductsList extends Component {
       sum += this.refs["product" + i].getPrice();
     }
     return sum.toFixed(2)
+  }
+
+  checkOut() {
+    let i;
+    for (i = 1; i < this.state.numberofprods + 1; i++) {
+      this.refs["product" + i].resetCount();
+    }
   }
 
   render() {

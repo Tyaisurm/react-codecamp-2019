@@ -37,6 +37,12 @@ class Product extends Component {
     return this.state.price * this.state.count;
   }
 
+  resetCount() {
+    this.setState({
+      count: 0
+    })
+  }
+
   setPrice(change) {
     // change is the coefficient. change = 1.05 would mean rise of 5% in price
     let nuprice = change * this.state.price;
