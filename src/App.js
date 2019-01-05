@@ -7,22 +7,24 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      basketTotal: 0
+      basketDrinks: 0,
+      basketSum: 0
     }
     this.addBasket = this.addBasket.bind(this);
   }
 
   addBasket(amount) {
     this.setState({
-      basketTotal: this.state.basketTotal + amount
+      basketDrinks: this.state.basketDrinks + amount,
+      basketSum: this.refs["plist"].getTotalPrice()
     })
   }
 
   render() {
     return (
       <div>
-        <Navigation total={this.state.basketTotal}/>
-        <ProductsList product={product} addBasket={this.addBasket} />
+        <Navigation totalDrinks={this.state.basketDrinks} totalSum = {this.state.basketSum}/>
+        <ProductsList product={product} addBasket={this.addBasket} ref="plist" />
       </div>
     );
   }

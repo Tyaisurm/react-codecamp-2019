@@ -32,10 +32,12 @@ class Navigation extends React.Component {
                 Browse Drinks <span className="sr-only">(current)</span>
               </a>
             </li>
-            <li className="nav-item" />
           </ul>
           <button type="button" className="btn btn-secondary float-sm-right">
-            Proceed to Order <span className="badge badge-light">{this.props.total}</span>
+            Total: $ {this.props.totalSum} <span className="sr-only">(current)</span>
+          </button>
+          <button type="button" className="btn btn-secondary float-sm-right">
+            Proceed to Order <span className="badge badge-light">{this.props.totalDrinks}</span>
             <span className="sr-only">unread messages</span>
           </button>
         </div>

@@ -22,17 +22,19 @@ class Product extends Component {
   addToBasket() {
     this.setState({
       count: this.state.count + 1
-    });
-    this.props.raise(1);
+    }, () => { this.props.raise(1) });
   }
 
   removeFromBasket() {
     if (this.state.count > 0) {
       this.setState({
         count: this.state.count - 1
-      });
-      this.props.raise(-1);
+      }, () => { this.props.raise(-1) });
     }
+  }
+
+  getPrice() {
+    return this.state.price * this.state.count;
   }
 
   setPrice(change) {
