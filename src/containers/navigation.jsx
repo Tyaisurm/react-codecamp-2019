@@ -33,16 +33,21 @@ class Navigation extends React.Component {
               </a>
             </li>
             <li className="nav-item active">
-              <p className="nav-link" style={{fontWeight: "bold"}}>
-                Your bill: $ {this.props.bill.toFixed(2)}
+              <p className="nav-link" style={{ fontWeight: "bold" }}>
+                Your Total bill: $ {this.props.bill.toFixed(2)}
               </p>
             </li>
           </ul>
-          <div style={{margin: 10, fontWeight: "bold"}}>
-            Total: $ {this.props.totalSum}
+          <div style={{ margin: 10, fontWeight: "bold" }}>
+            Cart : $ {this.props.totalSum}
           </div>
-          <button type="button" className="btn btn-secondary float-sm-right" onClick={this.props.checkOut}>
-            Proceed to Order <span className="badge badge-light">{this.props.totalDrinks}</span>
+          <button
+            type="button"
+            className="btn btn-secondary float-sm-right"
+            onClick={this.props.checkOut}
+          >
+            Proceed to Order{" "}
+            <span className="badge badge-light">{this.props.totalDrinks}</span>
             <span className="sr-only">unread messages</span>
           </button>
         </div>
