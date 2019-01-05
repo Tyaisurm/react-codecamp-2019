@@ -33,9 +33,9 @@ class Navigation extends React.Component {
               </a>
             </li>
           </ul>
-          <button type="button" className="btn btn-secondary float-sm-right">
-            Total: $ {this.props.totalSum} <span className="sr-only">(current)</span>
-          </button>
+          <div style={{margin: 10, fontWeight: "bold"}}>
+            Total: $ {this.props.totalSum}
+          </div>
           <button type="button" className="btn btn-secondary float-sm-right">
             Proceed to Order <span className="badge badge-light">{this.props.totalDrinks}</span>
             <span className="sr-only">unread messages</span>
