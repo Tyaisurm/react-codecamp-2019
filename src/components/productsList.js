@@ -3,20 +3,21 @@ import Product from "./product";
 
 class ProductsList extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       numberofprods: this.props.product.length
-    }
-    this.raisePrice = this.raisePrice.bind(this)
+    };
+    this.raisePrice = this.raisePrice.bind(this);
   }
 
-  raisePrice(id) { // As it works: When you purchase something (or now just add it to the basket), its price rises by 5% and all the others drop by 2%.
+  raisePrice(id) {
+    // As it works: When you purchase something (or now just add it to the basket), its price rises by 5% and all the others drop by 2%.
     let i;
     for (i = 1; i < this.state.numberofprods + 1; i++) {
       if (i === id) {
-        this.refs["product" + i].setPrice(1.05)
+        this.refs["product" + i].setPrice(1.05);
       } else {
-        this.refs["product" + i].setPrice(0.98)
+        this.refs["product" + i].setPrice(0.98);
       }
     }
   }
