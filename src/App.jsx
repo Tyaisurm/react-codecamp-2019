@@ -2,9 +2,19 @@ import React, {Component} from "react";
 import "./App.css";
 import Navigation from "./containers/Navigation";
 import ProductsList from "./components/ProductsList";
+<<<<<<< HEAD
+import {products} from "./fake/constants";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import Cart from "./containers/Cart";
+import NoMatch from "./components/NoMatch";
+
+const MAX_PRICE = 20;
+const MIN_PRICE = 1;
+=======
 import {MAX_COUNT, MAX_PRICE, MIN_PRICE, products} from "./fake/constants";
 import ErrorHandler from "./components/ErrorHandler";
 import {toast} from "react-toastify";
+>>>>>>> 6c2aa5ad6618a003d130b64e3fe42ba7153bd303
 
 class App extends Component {
     state = {
@@ -21,6 +31,31 @@ class App extends Component {
     render() {
         return (
             <div>
+<<<<<<< HEAD
+                <BrowserRouter>
+                        <>
+                            <Navigation
+                                totalDrinks={this.state.drinksCount} // sum all counts
+                                totalSum={this.state.basketSum}
+                                bill={this.state.bill}
+                                checkOut={this.checkOut}
+                            />
+                            <Switch>
+                                <Route
+                                    path={'/products'}
+                                    exact={true}
+                                    component={() => <ProductsList
+                                        products={this.state.products}
+                                        addToBasket={this.addToBasket}
+                                        removeFromBasket={this.removeFromBasket}
+                                    />}
+                                />
+                                <Route path={'/cart'} exact={true} component={Cart}/>
+                                <Route component={NoMatch}/>
+                            </Switch>
+                        </>
+                </BrowserRouter>
+=======
                 <Navigation
                     totalDrinks={this.state.drinksCount} // sum all counts
                     totalSum={this.state.basketSum}
@@ -39,6 +74,7 @@ class App extends Component {
                         bottom: '15%',
                     }}
                 />
+>>>>>>> 6c2aa5ad6618a003d130b64e3fe42ba7153bd303
             </div>
         );
     }
