@@ -1,8 +1,5 @@
 import React from "react";
 
-const MAX_COUNT = 50;
-const MIN_COUNT = 1;
-
 class Navigation extends React.Component {
     render() {
         const {totalDrinks, totalSum, bill, checkOut} = this.props;
@@ -49,7 +46,6 @@ class Navigation extends React.Component {
                         type="button"
                         className="btn btn-secondary float-sm-right"
                         onClick={checkOut}
-                        disabled={(totalDrinks <= MAX_COUNT && totalDrinks >= MIN_COUNT) ? false : true}
                     >
                         Proceed to Order{" "}
                         <span className="badge badge-light">{totalDrinks}</span>
