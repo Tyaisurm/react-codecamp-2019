@@ -3,6 +3,9 @@ import "./App.css";
 import Navigation from "./containers/Navigation";
 import ProductsList from "./components/ProductsList";
 import {products} from "./fake/constants";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import Cart from "./containers/Cart";
+import NoMatch from "./components/NoMatch";
 
 const MAX_PRICE = 20;
 const MIN_PRICE = 1;
@@ -22,17 +25,29 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Navigation
-                    totalDrinks={this.state.drinksCount} // sum all counts
-                    totalSum={this.state.basketSum}
-                    bill={this.state.bill}
-                    checkOut={this.checkOut}
-                />
-                <ProductsList
-                    products={this.state.products}
-                    addToBasket={this.addToBasket}
-                    removeFromBasket={this.removeFromBasket}
-                />
+                <BrowserRouter>
+                        <>
+                            <Navigation
+                                totalDrinks={this.state.drinksCount} // sum all counts
+                                totalSum={this.state.basketSum}
+                                bill={this.state.bill}
+                                checkOut={this.checkOut}
+                            />
+                            <Switch>
+                                <Route
+                                    path={'/products'}
+                                    exact={true}
+                                    component={() => <ProductsList
+                                        products={this.state.products}
+                                        addToBasket={this.addToBasket}
+                                        removeFromBasket={this.removeFromBasket}
+                                    />}
+                                />
+                                <Route path={'/cart'} exact={true} component={Cart}/>
+                                <Route component={NoMatch}/>
+                            </Switch>
+                        </>
+                </BrowserRouter>
             </div>
         );
     }

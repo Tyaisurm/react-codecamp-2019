@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const MAX_COUNT = 50;
 const MIN_COUNT = 1;
@@ -33,7 +34,9 @@ class Navigation extends React.Component {
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
                             <a className="nav-link" href="/">
-                                Browse Drinks <span className="sr-only">(current)</span>
+                                <Link to={"/products"}>
+                                    Browse Drinks <span className="sr-only">(current)</span>
+                                </Link>
                             </a>
                         </li>
                         <li className="nav-item active">
