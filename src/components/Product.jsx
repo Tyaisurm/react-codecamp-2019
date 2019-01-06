@@ -1,5 +1,6 @@
 import React from "react";
 import beer from "../images/beer.png";
+import {MAX_PRICE, MIN_PRICE} from "../fake/constants";
 
 require("../images/beer.png");
 
@@ -35,6 +36,10 @@ const Product = (props) => {
                 <span
                     name="currentPrice"
                     className="badge badge-dark m-2 float-sm-right"
+                    style={{
+                        border: props.price === MAX_PRICE ? '3px red ridge'
+                            : props.price === MIN_PRICE ? '3px green ridge' : 'none'
+                    }}
                 >
             $ {props.price.toFixed(2)}
           </span>
@@ -50,7 +55,6 @@ const Product = (props) => {
                 >
             $ {props.minPrice.toFixed(2)}
           </span>
-
                 <footer className="blockquote-footer">
                     <cite title="type">{props.description}</cite>
                 </footer>

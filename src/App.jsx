@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./App.css";
 import Navigation from "./containers/Navigation";
 import ProductsList from "./components/ProductsList";
+<<<<<<< HEAD
 import {products} from "./fake/constants";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Cart from "./containers/Cart";
@@ -9,6 +10,11 @@ import NoMatch from "./components/NoMatch";
 
 const MAX_PRICE = 20;
 const MIN_PRICE = 1;
+=======
+import {MAX_COUNT, MAX_PRICE, MIN_PRICE, products} from "./fake/constants";
+import ErrorHandler from "./components/ErrorHandler";
+import {toast} from "react-toastify";
+>>>>>>> 6c2aa5ad6618a003d130b64e3fe42ba7153bd303
 
 class App extends Component {
     state = {
@@ -25,6 +31,7 @@ class App extends Component {
     render() {
         return (
             <div>
+<<<<<<< HEAD
                 <BrowserRouter>
                         <>
                             <Navigation
@@ -48,18 +55,42 @@ class App extends Component {
                             </Switch>
                         </>
                 </BrowserRouter>
+=======
+                <Navigation
+                    totalDrinks={this.state.drinksCount} // sum all counts
+                    totalSum={this.state.basketSum}
+                    bill={this.state.bill}
+                    checkOut={this.checkOut}
+                    showError={this.showError}
+                />
+                <ProductsList
+                    products={this.state.products}
+                    addToBasket={this.addToBasket}
+                    removeFromBasket={this.removeFromBasket}
+                />
+                <ErrorHandler
+                    style={{
+                        position: 'fixed',
+                        bottom: '15%',
+                    }}
+                />
+>>>>>>> 6c2aa5ad6618a003d130b64e3fe42ba7153bd303
             </div>
         );
     }
 
     checkOut = () => {
-        this.updatePrices();
-        this.updateBasket();
-        this.setState({
-            bill: (parseFloat(this.state.bill) + parseFloat(this.state.basketSum)), // Otherwise it treats it as string for some reason
-            basketDrinks: 0,
-            basketSum: 0
-        })
+        if (this.state.drinksCount === 0) {
+            this.showError('You have no products in your Cart!');
+        } else {
+            this.updatePrices();
+            this.updateBasket();
+            this.setState({
+                bill: (parseFloat(this.state.bill) + parseFloat(this.state.basketSum)), // Otherwise it treats it as string for some reason
+                basketDrinks: 0,
+                basketSum: 0
+            })
+        }
     }
 
     updatePrices() {
@@ -86,16 +117,20 @@ class App extends Component {
     }
 
     addToBasket = (productId) => {
-        this.setState({
-            products: this.state.products.map(p => {
-                if (p.id === productId) {
-                    p.count++;
-                }
-                return p;
-            })
-        });
+        if (this.state.drinksCount === MAX_COUNT) {
+            this.showError(`You can't buy more than ${MAX_COUNT} products!`);
+        } else {
+            this.setState({
+                products: this.state.products.map(p => {
+                    if (p.id === productId) {
+                        p.count++;
+                    }
+                    return p;
+                })
+            });
 
-        this.updateBasket();
+            this.updateBasket();
+        }
     }
 
     removeFromBasket = (productId) => {
@@ -123,6 +158,17 @@ class App extends Component {
         this.setState({
             drinksCount: allDrinks,
             basketSum: sumPrice,
+        });
+    }
+
+    showError = (errorMessage) => {
+        toast.error(errorMessage, {
+            position: "bottom-center",
+            autoClose: 1500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true
         });
     }
 }
