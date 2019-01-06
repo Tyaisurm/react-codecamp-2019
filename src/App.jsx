@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
-import Navigation from "./containers/navigation";
-import ProductsList from "./components/productsList";
+import Navigation from "./containers/Navigation";
+import ProductsList from "./components/ProductsList";
 import { product } from "./fake/constants";
 class App extends Component {
   constructor(props) {
