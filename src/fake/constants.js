@@ -33,7 +33,6 @@ export const products = [
     }
 ];
 
-export const MAX_PRICE = 20;
-export const MIN_PRICE = 1;
+export const MAX_PRICE = 10;
+export const MIN_PRICE = 3;
 export const MAX_COUNT = 15;
-export const MIN_COUNT = 1;
