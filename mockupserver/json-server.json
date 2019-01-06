@@ -1,0 +1,9 @@
+{
+    "port": 3001,
+    "read-only": false,
+    "watch": true,
+    "static": "./public/",
+    "routes": "mockuproutes.json",
+    "foreignKeySuffix":"Id",
+    "id":"id"
+  }

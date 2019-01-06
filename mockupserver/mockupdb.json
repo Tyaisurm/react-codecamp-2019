@@ -1,0 +1,189 @@
+{
+  "drinks": [
+    {
+      "id": 0,
+      "title": "Karhu",
+      "description": "a pale lager with a strong taste. Karhu meaning bear in Finnish",
+      "startprice": 5.0,
+      "type": "bevarage",
+      "image": ""
+    },
+    {
+      "id": 1,
+      "title": "Sandels",
+      "description": "named after the Swedish marshal and war hero of the Finnish War, Johan August Sandels",
+      "startprice":5.4,
+      "type": "bevarage",
+      "image": ""
+    },
+    {
+      "id": 2,
+      "title": "Saimaa Brew",
+      "description": "locally brewed in Saimaa region",
+      "startprice": 6.2,
+      "type": "bevarage",
+      "image": ""
+    },
+    {
+      "id": 3,
+      "title": "Indian Pale Ale",
+      "description": "hoppy beer style, brewed from pale malt",
+      "startprice": 4.0,
+      "type": "bevarage",
+      "image": ""
+    },
+    {
+      "id": 4,
+      "title": "Kingfisher",
+      "description": "popular indian beer",
+      "startprice": 4.5,
+      "type": "bevarage",
+      "image": ""
+    },
+    {
+      "id": 5,
+      "title": "Cola",
+      "description": "Cola-flavoured soda",
+      "type": "mixer",
+      "startprice": 2,
+      "image": ""
+    },
+    {
+      "id": 6,
+      "title": "Fanta",
+      "description": "Orange-flavoured soda",
+      "type": "mixer",
+      "startprice": 2,
+      "image": ""
+    },
+    {
+      "id": 7,
+      "title": "Cranberry Juice",
+      "description": "Juice. Nuff said.",
+      "type": "mixer",
+      "startprice": 3,
+      "image": ""
+    },
+    {
+      "id": 8,
+      "title": "Soda",
+      "description": "Water with bubbles",
+      "type": "mixer",
+      "startprice": 1,
+      "image": ""
+    },
+    {
+      "id": 9,
+      "title": "Vodka",
+      "description": "Not 100% ethanol",
+      "type": "spirit",
+      "startprice": 6,
+      "image": ""
+    },
+    {
+      "id": 10,
+      "title": "Triple Sec",
+      "description": "Lemony!",
+      "type": "spirit",
+      "startprice": 6.5,
+      "image": ""
+    },
+    {
+      "id": 11,
+      "title": "Gin",
+      "description": "Popular ingredient",
+      "type": "spirit",
+      "startprice": 6.5,
+      "image": ""
+    }
+  ],
+  "history": [
+    {
+      "id": 0,
+      "drinkId": 0,
+      "data": [
+        5.0
+      ]
+    },
+    {
+      "id": 1,
+      "drinkId": 1,
+      "data": [
+        5.4
+      ]
+    },
+    {
+      "id": 2,
+      "drinkId": 2,
+      "data": [
+        6.2
+      ]
+    },
+    {
+      "id": 3,
+      "drinkId": 3,
+      "data": [
+        4.0
+      ]
+    },
+    {
+      "id": 4,
+      "drinkId": 4,
+      "data": [
+        4.5
+      ]
+    },
+    {
+      "id": 5,
+      "drinkId": 5,
+      "data": [
+        2.0
+      ]
+    },
+    {
+      "id": 6,
+      "drinkId": 6,
+      "data": [
+        2.0
+      ]
+    },
+    {
+      "id": 7,
+      "drinkId": 7,
+      "data": [
+        3.0
+      ]
+    },
+    {
+      "id": 8,
+      "drinkId": 8,
+      "data": [
+        1
+      ]
+    },
+    {
+      "id": 9,
+      "drinkId": 9,
+      "data": [
+        6.0
+      ]
+    },
+    {
+      "id": 10,
+      "drinkId": 10,
+      "data": [
+        6.5
+      ]
+    },
+    {
+      "id": 11,
+      "drinkId": 11,
+      "data": [
+        6.5
+      ]
+    }
+  ],
+  "transactions":[
+    
+  ]
+}

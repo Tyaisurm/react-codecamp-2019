@@ -1,0 +1,6 @@
+{
+    "/api/bevarages": "/api/drinks?type=bevarage",
+    "/api/spirits": "/api/drinks?type=spirit",
+    "/api/mixers": "/api/drinks?type=mixer",
+    "/api/drinks/:id/history": "/api/history/:id"
+}
