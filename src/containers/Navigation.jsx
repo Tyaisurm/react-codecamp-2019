@@ -39,7 +39,7 @@ class Navigation extends React.Component {
             </li>
           </ul>
           <div style={{ margin: 10, fontWeight: "bold" }}>
-            Cart : $ {this.props.totalSum}
+            Cart : $ {this.props.totalSum.toFixed(2)}
           </div>
           <button
             type="button"
@@ -54,6 +54,7 @@ class Navigation extends React.Component {
       </nav>
     );
   }
+
 }
 
 export default Navigation;
