@@ -45,6 +45,7 @@ class App extends Component {
                                 <Route path={'/cart'} exact={true} component={Cart}/>
                                 <Route component={NoMatch}/>
                             </Switch>
+                            <ErrorHandler/>
                         </>
                 </BrowserRouter>
             </div>
