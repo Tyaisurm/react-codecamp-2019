@@ -2,10 +2,9 @@ import React, {Component} from "react";
 import "./App.css";
 import Navigation from "./containers/Navigation";
 import ProductsList from "./components/ProductsList";
-import {products} from "./fake/constants";
-
-const MAX_PRICE = 20;
-const MIN_PRICE = 1;
+import {MAX_COUNT, MAX_PRICE, MIN_PRICE, products} from "./fake/constants";
+import ErrorHandler from "./components/ErrorHandler";
+import {toast} from "react-toastify";
 
 class App extends Component {
     state = {
@@ -27,24 +26,35 @@ class App extends Component {
                     totalSum={this.state.basketSum}
                     bill={this.state.bill}
                     checkOut={this.checkOut}
+                    showError={this.showError}
                 />
                 <ProductsList
                     products={this.state.products}
                     addToBasket={this.addToBasket}
                     removeFromBasket={this.removeFromBasket}
                 />
+                <ErrorHandler
+                    style={{
+                        position: 'fixed',
+                        bottom: '15%',
+                    }}
+                />
             </div>
         );
     }
 
     checkOut = () => {
-        this.updatePrices();
-        this.updateBasket();
-        this.setState({
-            bill: (parseFloat(this.state.bill) + parseFloat(this.state.basketSum)), // Otherwise it treats it as string for some reason
-            basketDrinks: 0,
-            basketSum: 0
-        })
+        if (this.state.drinksCount === 0) {
+            this.showError('You have no products in your Cart!');
+        } else {
+            this.updatePrices();
+            this.updateBasket();
+            this.setState({
+                bill: (parseFloat(this.state.bill) + parseFloat(this.state.basketSum)), // Otherwise it treats it as string for some reason
+                basketDrinks: 0,
+                basketSum: 0
+            })
+        }
     }
 
     updatePrices() {
@@ -71,16 +81,20 @@ class App extends Component {
     }
 
     addToBasket = (productId) => {
-        this.setState({
-            products: this.state.products.map(p => {
-                if (p.id === productId) {
-                    p.count++;
-                }
-                return p;
-            })
-        });
+        if (this.state.drinksCount === MAX_COUNT) {
+            this.showError(`You can't buy more than ${MAX_COUNT} products!`);
+        } else {
+            this.setState({
+                products: this.state.products.map(p => {
+                    if (p.id === productId) {
+                        p.count++;
+                    }
+                    return p;
+                })
+            });
 
-        this.updateBasket();
+            this.updateBasket();
+        }
     }
 
     removeFromBasket = (productId) => {
@@ -108,6 +122,17 @@ class App extends Component {
         this.setState({
             drinksCount: allDrinks,
             basketSum: sumPrice,
+        });
+    }
+
+    showError = (errorMessage) => {
+        toast.error(errorMessage, {
+            position: "bottom-center",
+            autoClose: 1500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true
         });
     }
 }

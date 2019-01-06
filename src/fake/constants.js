@@ -32,3 +32,7 @@ export const products = [
         description: "popular indian beer "
     }
 ];
+
+export const MAX_PRICE = 10;
+export const MIN_PRICE = 3;
+export const MAX_COUNT = 15;
