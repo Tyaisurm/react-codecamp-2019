@@ -1,6 +1,7 @@
 const axios = require("axios");
 const MAX_PRICE = 20;
 const MIN_PRICE = 1;
+const MAX_COUNT = 15;
 
 
 
@@ -105,39 +106,48 @@ updatePrices() {
     }
 
 */
+// array with [[itemID, itemcount],....]
+function createTransaction(items = []){
+  if(items.length === 0){throw {message:"input array was empty! Fill with [ [itemID_1, itemAmount_1], [itemID_2, itemAmount_2],...]"}}
+  else if(items.length > MAX_COUNT){throw {message:"Too many items selected! Maximum allowed amount is ".concat(MAX_COUNT.toString())}}
 
-function createTransaction(itemid = -1, itemcount = 0){
   return getFullHistory().then(getresponse => {
     //got history of everything in response, now need to manipulate prices
     let newprice
     let oldprice
+    let trarr = [[],[],[]]
     for(let k = 0;k<getresponse.length;k++){
-     switch(k){
-      case itemid:
+      // single history element, current = getresponse[k]
+      let currentitem
+      for(let i = 0;i<items.length;i++){
+        if(items[i][0] === getresponse[k].drinkId){currentitem = items[i];break;}
+      }
+      if(currentitem){// this element was bought
         oldprice = getresponse[k].data[getresponse[k].data.length-1]
-        newprice = getresponse[k].data[getresponse[k].data.length-1] * Math.pow(1.02,itemcount)
+        trarr[0].push(currentitem[0])
+        trarr[1].push(currentitem[1])
+        trarr[2].push(oldprice)
+        newprice = getresponse[k].data[getresponse[k].data.length-1] * Math.pow(1.02,currentitem[1])
         if (newprice > MAX_PRICE){
           newprice = MAX_PRICE;}
         if (newprice < MIN_PRICE){
           newprice = MIN_PRICE;}
         getresponse[k].data.push(newprice)
-        break;
-      case -1:
-      break;
-      default:
+    
+      }else{// this element was NOT bought
         let otherprice = getresponse[k].data[getresponse[k].data.length-1] * 0.995
         if (otherprice > MAX_PRICE){
           otherprice = MAX_PRICE;}
         if (otherprice < MIN_PRICE){
           otherprice = MIN_PRICE;}
         getresponse[k].data.push(otherprice)
-     } 
+      }
     }
     const transactionobj = {
       "timestamp": new Date().toISOString(),
-      "item": itemid,
-      "amount":itemcount,
-      "price-per-unit": oldprice
+      "items": trarr[0],
+      "amounts":trarr[1],
+      "price-per-unit": trarr[2]
     }
     return axios.post("http://localhost:3001/api/transactions",transactionobj).then(transactionresp =>{sendPatch(getresponse);return transactionresp.data});
   });
