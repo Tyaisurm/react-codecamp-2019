@@ -1,6 +1,6 @@
 const axios = require("axios");
-const MAX_PRICE = 20;
-const MIN_PRICE = 1;
+const MAX_PRICE = 10;
+const MIN_PRICE = 3;
 const MAX_COUNT = 15;
 
 
