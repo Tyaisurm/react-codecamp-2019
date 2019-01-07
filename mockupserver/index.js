@@ -3,7 +3,7 @@ const fs = require('fs-extra')
 const server = jsonServer.create()
 const path = require('path')
 const router = jsonServer.router(path.join(__dirname, 'mockupdb.json'))
-const serverport  = 3001
+const PORT  = 3001
 
 let middlewares = jsonServer.defaults({static: "./staticfiles"})
 if(false){// use if want to make real time changes to file during run
@@ -13,7 +13,7 @@ middlewares = [
     (req, res, next) => fs
       .readJson(path.join(__dirname, 'mockupdb.json'))
       .then(contents => {
-        console.log("Hold up! Updating database file...");
+        console.log("Hold up! Updating database(memory) from database(file)...");
         router.db.assign(contents).write();
         next();
       })
@@ -55,6 +55,6 @@ server.use(jsonServer.rewriter(routes));
 
  //Use default router
 server.use('/api',router)
-server.listen(serverport, () => {
-  console.log('JSON Server is running in localhost port ',serverport)
+server.listen(PORT, () => {
+  console.log('JSON Server is running in localhost port ',PORT)
 })
