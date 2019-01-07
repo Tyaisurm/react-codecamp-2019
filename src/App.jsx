@@ -70,7 +70,7 @@ class App extends Component {
         const resetProducts = products.map(p => {
             p.price = p.count !== 0 // javascript ternary operator
                 ? 1.02 ** p.count * p.price // do it if price is not equal to 0
-                : 0.995 * p.price; // do otherwise if it is
+                : 0.995 ** this.state.drinksCount * p.price; // do otherwise if it is
             if (p.price > MAX_PRICE)
                 p.price = MAX_PRICE;
             if (p.price < MIN_PRICE)
