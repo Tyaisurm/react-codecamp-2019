@@ -8,6 +8,8 @@ import Cart from "./containers/Cart";
 import NoMatch from "./components/NoMatch";
 import ErrorHandler from "./components/ErrorHandler";
 import {toast} from "react-toastify";
+import CanvasJSReact from './canvasjs.react';
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class App extends Component {
     state = {
@@ -18,10 +20,49 @@ class App extends Component {
             p.count = 0;
             p.minPrice = p.maxPrice = p.price;
             return p;
-        })
+        }),
+        chartdata: []
     };
 
+    componentDidMount() {
+        let addchartdata = [];
+        let i;
+
+        for (i = 0; i < products.length; i++) {
+            addchartdata.push({
+                type: "line",
+                name: products[i].name,
+                showInLegend: true,
+                dataPoints : [
+                    { y: products[i].price }
+                ]
+            })
+        }
+        this.setState({
+            chartdata: addchartdata
+        })
+    }
+
     render() {
+        const chartoptions = {
+            animationEnabled: true,	
+            title:{
+                text: "Drink prices"
+            },
+            axisY : {
+                title: "Price",
+                includeZero: false
+            },
+            axisX : {
+                viewportMinimum: 0,
+                viewportMaximum: 20
+            },
+            toolTip: {
+                shared: true
+            },
+            data: this.state.chartdata
+        }
+
         return (
             <div>
                 <BrowserRouter>
@@ -48,9 +89,12 @@ class App extends Component {
                             <ErrorHandler/>
                         </>
                 </BrowserRouter>
+                <CanvasJSChart options = {chartoptions} />
             </div>
         );
     }
+
+
 
     checkOut = () => {
         if (this.state.drinksCount === 0) {
@@ -70,7 +114,7 @@ class App extends Component {
         const resetProducts = products.map(p => {
             p.price = p.count !== 0 // javascript ternary operator
                 ? 1.02 ** p.count * p.price // do it if price is not equal to 0
-                : 0.995 * p.price; // do otherwise if it is
+                : 0.995 ** this.state.drinksCount * p.price; // do otherwise if it is
             if (p.price > MAX_PRICE)
                 p.price = MAX_PRICE;
             if (p.price < MIN_PRICE)
@@ -84,8 +128,16 @@ class App extends Component {
             return p;
         });
 
+        let i;
+        let newchartdata = this.state.chartdata;
+        for (i = 0; i < products.length; i++) {
+            let price = this.state.products[i].price;
+            newchartdata[i].dataPoints.push({ y: price })
+        }
+
         this.setState({
-            products: resetProducts
+            products: resetProducts,
+            chartdata: newchartdata
         });
     }
 
