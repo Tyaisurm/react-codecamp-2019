@@ -21,6 +21,7 @@ class App extends Component {
             p.minPrice = p.maxPrice = p.price;
             return p;
         }),
+        history: 1, // The number of prices in history - starts with one
         chartdata: []
     };
 
@@ -44,6 +45,12 @@ class App extends Component {
     }
 
     render() {
+        let chartlength = 6;
+
+        if (this.state.history > 5) {
+            chartlength = this.state.history
+        }
+
         const chartoptions = {
             animationEnabled: true,	
             title:{
@@ -55,7 +62,7 @@ class App extends Component {
             },
             axisX : {
                 viewportMinimum: 0,
-                viewportMaximum: 20
+                viewportMaximum: chartlength
             },
             toolTip: {
                 shared: true
@@ -137,7 +144,8 @@ class App extends Component {
 
         this.setState({
             products: resetProducts,
-            chartdata: newchartdata
+            chartdata: newchartdata,
+            history: this.state.history + 1
         });
     }
 
